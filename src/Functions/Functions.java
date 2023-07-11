@@ -574,28 +574,30 @@ public class Functions implements Serializable {
         if (staticArrayLists.allRestaurantsArrayList.size() == 0)
             System.out.println("Sorry, There is no available restaurant at this time !!!");
         else {
-            System.out.println("Here is the list of available restaurants for you:");
-            User user = (User) Role.loggedInRole ;
-            int userLocation = user.userLocation ;
-            for (int i = 0 ; i < staticArrayLists.allRestaurantsArrayList.size() ; i++){
-                if ( Math.abs(staticArrayLists.allRestaurantsArrayList.get(i).restaurantLocation - userLocation) < 300 ){
-                    System.out.println("Restaurant \"" + staticArrayLists.allRestaurantsArrayList.get(i).restaurantName + "\" -> with the ID \"" + staticArrayLists.allRestaurantsArrayList.get(i).restaurantID + "\"");
+            if (((User)Role.loggedInRole).userOrders.size() == 0) {
+                System.out.println("Here is the list of available restaurants for you:");
+                User user = (User) Role.loggedInRole;
+                int userLocation = user.userLocation;
+                for (int i = 0; i < staticArrayLists.allRestaurantsArrayList.size(); i++) {
+                    if (Math.abs(staticArrayLists.allRestaurantsArrayList.get(i).restaurantLocation - userLocation) < 300) {
+                        System.out.println("Restaurant \"" + staticArrayLists.allRestaurantsArrayList.get(i).restaurantName + "\" -> with the ID \"" + staticArrayLists.allRestaurantsArrayList.get(i).restaurantID + "\"");
+                    }
                 }
             }
-            /*
-            for (int i=0;i<((User)Role.loggedInRole).userOrders.size();i++)
-                for (int j=0;j<((User)Role.loggedInRole).userOrders.get(i).orderedRestaurant.restaurantFoodType.size();j++)
-                    for (int k=0;k<staticArrayLists.allRestaurantsArrayList.size();k++)
-                        for (int l = 0;l<staticArrayLists.allRestaurantsArrayList.get(k).restaurantFoodType.size();l++)
-                            if (((User)Role.loggedInRole).userOrders.get(i).orderedRestaurant.restaurantFoodType.get(j).equals(staticArrayLists.allRestaurantsArrayList.get(k).restaurantFoodType.get(l)))
-                                System.out.println("Restaurant \"" + staticArrayLists.allRestaurantsArrayList.get(k).restaurantName + "\" -> with the ID \"" + staticArrayLists.allRestaurantsArrayList.get(k).restaurantID + "\"");
-            for (int i=0;i<((User)Role.loggedInRole).userOrders.size();i++)
-                for (int j=0;j<((User)Role.loggedInRole).userOrders.get(i).orderedRestaurant.restaurantFoodType.size();j++)
-                    for (int k=0;k<staticArrayLists.allRestaurantsArrayList.size();k++)
-                        for (int l = 0;l<staticArrayLists.allRestaurantsArrayList.get(k).restaurantFoodType.size();l++)
-                            if (!((User)Role.loggedInRole).userOrders.get(i).orderedRestaurant.restaurantFoodType.get(j).equals(staticArrayLists.allRestaurantsArrayList.get(k).restaurantFoodType.get(l)))
-                                System.out.println("Restaurant \"" + staticArrayLists.allRestaurantsArrayList.get(k).restaurantName + "\" -> with the ID \"" + staticArrayLists.allRestaurantsArrayList.get(k).restaurantID + "\"");
-        */
+            else {
+                for (int i = 0; i < ((User) Role.loggedInRole).userOrders.size(); i++)
+                    for (int j = 0; j < ((User) Role.loggedInRole).userOrders.get(i).orderedRestaurant.restaurantFoodType.size(); j++)
+                        for (int k = 0; k < staticArrayLists.allRestaurantsArrayList.size(); k++)
+                            for (int l = 0; l < staticArrayLists.allRestaurantsArrayList.get(k).restaurantFoodType.size(); l++)
+                                if (((User) Role.loggedInRole).userOrders.get(i).orderedRestaurant.restaurantFoodType.get(j).equals(staticArrayLists.allRestaurantsArrayList.get(k).restaurantFoodType.get(l)))
+                                    System.out.println("Restaurant \"" + staticArrayLists.allRestaurantsArrayList.get(k).restaurantName + "\" -> with the ID \"" + staticArrayLists.allRestaurantsArrayList.get(k).restaurantID + "\"");
+                for (int i = 0; i < ((User) Role.loggedInRole).userOrders.size(); i++)
+                    for (int j = 0; j < ((User) Role.loggedInRole).userOrders.get(i).orderedRestaurant.restaurantFoodType.size(); j++)
+                        for (int k = 0; k < staticArrayLists.allRestaurantsArrayList.size(); k++)
+                            for (int l = 0; l < staticArrayLists.allRestaurantsArrayList.get(k).restaurantFoodType.size(); l++)
+                                if (!((User) Role.loggedInRole).userOrders.get(i).orderedRestaurant.restaurantFoodType.get(j).equals(staticArrayLists.allRestaurantsArrayList.get(k).restaurantFoodType.get(l)))
+                                    System.out.println("Restaurant \"" + staticArrayLists.allRestaurantsArrayList.get(k).restaurantName + "\" -> with the ID \"" + staticArrayLists.allRestaurantsArrayList.get(k).restaurantID + "\"");
+            }
         }
     }
     public static void ShowRelatedRestaurants (String name,StaticArrayLists staticArrayLists){
